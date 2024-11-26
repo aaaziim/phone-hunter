@@ -1,7 +1,6 @@
 const loadPhone = async (searchText) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     const phones = await res.json()
-    console.log(phones.data)
     displayPhone(phones.data);
 
 }
@@ -59,7 +58,6 @@ document.getElementById('search-btn').addEventListener('click', () => {
 
     spinnerHandler(true);
     const searchText = document.getElementById('search-text').value;
-    // console.log(searchText)
     loadPhone(searchText)
 })
 
@@ -79,7 +77,6 @@ const showAll = () => {
     showAllPhone = true
     spinnerHandler(true);
     const searchText = document.getElementById('search-text').value;
-    // console.log(searchText)
     loadPhone(searchText)
 };
 
@@ -95,7 +92,6 @@ const handleShowDetail = async (id) => {
 const showPhoneDetails = (phone) => {
 
 
-    console.log(phone)
 
     setValueById('phone-name', phone.name
     );
