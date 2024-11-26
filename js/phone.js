@@ -42,7 +42,7 @@ const displayPhone = (phones) => {
                     </h2>
                     
                      <div class="card-actions justify-center my-2">
-      <button class="btn btn-primary">Buy Now</button>
+      <button onclick="handleShowDetail('${phone.slug}')" class="btn btn-primary">Show Detail</button>
     </div>
                 </div>
             </div>
@@ -82,3 +82,31 @@ const showAll = () => {
     // console.log(searchText)
     loadPhone(searchText)
 };
+
+const handleShowDetail = async (id) => {
+
+    const res = await fetch(` https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json();
+    const phone = data.data
+    showPhoneDetails(phone)
+}
+
+
+const showPhoneDetails = (phone) => {
+
+
+    console.log(phone)
+
+    setValueById('phone-name', phone.name
+    );
+    setValueById('phone-brand', phone.brand
+    );
+    setValueById('phone-releaseDate', phone.releaseDate
+    );
+    document.getElementById('phone-img').src = phone.image
+    show_modal.showModal()
+}
+
+const setValueById = (id, value) => {
+    document.getElementById(id).innerText = value;
+}
